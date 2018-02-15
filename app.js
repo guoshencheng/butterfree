@@ -6,6 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
 
+require('./helpers/expressReponse');
+var handlebarHelpers = require('./helpers/handlebarHelpers');
 var routes = require('./routes/index');
 
 var app = express();
@@ -13,7 +15,8 @@ var app = express();
 // view engine setup
 const hbs = exphbs.create({
   extname: '.hbs',
-  defaultLayout: 'main'
+  defaultLayout: 'main',
+  helpers: handlebarHelpers
 });
 app.engine('.hbs', hbs.engine)
 app.set('views', path.join(__dirname, 'views'));
