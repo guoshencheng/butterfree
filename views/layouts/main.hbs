@@ -5,7 +5,11 @@
     <title>{{title}}</title>
     {{> commonLoad }}
   </head>
-  <body>
-    {{{body}}}
+  <body class="skin-red sidebar-mini">
+    {{> header }}
+    {{> sidebar }}
+    <div class="content-wrapper" style="background:white;">
+      {{{body}}}
+    </div>
   </body>
 </html>
