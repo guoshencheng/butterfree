@@ -7,3 +7,20 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 <script src="https://cdn.bootcss.com/admin-lte/2.4.2/js/adminlte.min.js"></script>
+<script type="text/javascript">
+$.fn.serializeObject = function() {
+ var o = {};
+ var a = this.serializeArray();
+ $.each(a, function() {
+   if (o[this.name]) {
+     if (!o[this.name].push) {
+       o[this.name] = [o[this.name]];
+     }
+     o[this.name].push(this.value || '');
+   } else {
+     o[this.name] = this.value || '';
+   }
+ });
+ return o;
+};
+</script>
