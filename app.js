@@ -5,7 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
+var session = require('express-session');
+var config = require('config');
+const MongoStore = require('connect-mongo')(session);
 
+const mongoose = require('mongoose');
+mongoose.connect(`mongodb://${config.mongo.host}/${config.mongo.database}`,{});
 require('./helpers/expressReponse');
 var handlebarHelpers = require('./helpers/handlebarHelpers');
 var routes = require('./routes/index');
@@ -24,6 +29,12 @@ app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(session({
+  secret: 'guoshencheng',
+  resave: false,
+  saveUninitialized: true,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
