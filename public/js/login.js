@@ -4,9 +4,14 @@ $(function() {
     const params = loginForm.serializeObject();
     $.ajax({
       method: 'post',
-      url: '/api/login'
+      url: '/api/login',
+      data: params,
     }).then(function(data) {
-      console.log(data)
+      if (data.success) {
+        window.location.href = '/'
+      } else {
+        alert(data.message)
+      }
     })
   })
 })

@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var pages = require('../constants/pages');
+var api = require('./api');
 var { checkPageAccess, checkApiAccess } = require('../middlewares/auth');
+
+router.use('/api', api);
 
 router.get('/', checkPageAccess, (req, res, next) => {
   res.redirect(pages.home.path);
