@@ -11,8 +11,11 @@ router.get('/', checkPageAccess, (req, res, next) => {
 })
 
 router.get('/login', (req, res, next) => {
+  const redirect = req.query.redirect;
+  console.log(redirect)
   res.render('login', {
     title: '登陆',
+    redirect: decodeURIComponent(redirect),
     layout: 'outside'
   })
 });
