@@ -1,3 +1,3 @@
 $(function() {
-  console.log(1212)
+  $('#posts-table').DataTable();
 })
