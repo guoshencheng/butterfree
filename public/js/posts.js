@@ -21,7 +21,7 @@ $(function() {
       data: 'short',
       width: '300'
     }, {
-      data: 'status'
+      data: 'statusDesc'
     }, {
       data: null,
       render: function(data) {
