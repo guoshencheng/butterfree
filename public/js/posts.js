@@ -48,4 +48,16 @@ $(function() {
       }
     })
   })
+  $('.create-post').on('click', function() {
+    $.ajax({
+      method: 'post',
+      url: '/api/v1/posts/empty'
+    }).then(function(res) {
+      if (res.success) {
+        window.location.href = '/posts/' + res.data.id
+      } else {
+        layer.alert(res.message)
+      }
+    })
+  })
 })
