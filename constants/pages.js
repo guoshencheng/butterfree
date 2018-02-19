@@ -1,8 +1,8 @@
 module.exports = {
-  home: {
-    path: '/homepage',
-    title: '主页',
+  posts: {
+    path: '/posts',
+    title: '我的博客',
     icon: 'fa-home',
-    view: 'index'
+    view: 'posts'
   }
 };

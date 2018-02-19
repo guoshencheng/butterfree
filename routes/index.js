@@ -7,7 +7,7 @@ var { checkPageAccess, checkApiAccess } = require('../middlewares/auth');
 router.use('/api', api);
 
 router.get('/', checkPageAccess, (req, res, next) => {
-  res.redirect(pages.home.path);
+  res.redirect(pages.posts.path);
 })
 
 router.get('/login', (req, res, next) => {
