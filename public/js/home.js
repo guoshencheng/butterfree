@@ -6,6 +6,7 @@ $(function() {
     lengthChange: false,
     processing: true,
     paging: false,
+    autoWidth: false,
     ajax: {
       url: '/api/v1/posts',
       dataSrc: function(data) {
@@ -17,14 +18,34 @@ $(function() {
     }, {
       data: 'title'
     }, {
-      data: 'short'
+      data: 'short',
+      width: '300'
     }, {
       data: 'status'
     }, {
       data: null,
       render: function(data) {
-        return '<div></div>'
+        var statusOp = data.status == 1 ? '下线' : '上线';
+        return '<span class="operation-container" data-id="' + data.id + '">' +
+        '<a class="fa fa-edit" href="javascript:void(0)" ></a>' +
+        '<a class="fa change-status" href="javascript:void(0)" data-status="' + data.status + '" >' + statusOp + '</a>' +
+        '</span>'
       }
     }]
   });
+  $('body').on('click', '.change-status', function() {
+    var status = $(this).data('status');
+    var id = $(this).parent().data('id');
+    var url = '/api/v1/posts/' + id + '/status/' + (status == 1 ? 0 : 1)
+    $.ajax({
+      method: 'put',
+      url: url
+    }).then(function(res) {
+      if (res.success) {
+        table.ajax.reload();
+      } else {
+        layer.alert(res.message)
+      }
+    })
+  })
 })

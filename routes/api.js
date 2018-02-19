@@ -44,7 +44,7 @@ var commonRequest = axios.create({
   }
 });
 
-router.get('*', async (req, res, next) => {
+router.use('*', async (req, res, next) => {
   const path = req.params[0];
   try {
     const response = await commonRequest({
