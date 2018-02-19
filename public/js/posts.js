@@ -27,7 +27,7 @@ $(function() {
       render: function(data) {
         var statusOp = data.status == 1 ? '下线' : '上线';
         return '<span class="operation-container" data-id="' + data.id + '">' +
-        '<a class="fa fa-edit" href="javascript:void(0)" ></a>' +
+        '<a class="fa fa-edit" href="/posts/' + data.id + '" ></a>' +
         '<a class="fa change-status" href="javascript:void(0)" data-status="' + data.status + '" >' + statusOp + '</a>' +
         '</span>'
       }

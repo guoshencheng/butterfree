@@ -1,19 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var axios = require('axios');
-var config = require('config');
-
-var request = axios.create({
-  baseURL: config.apiServer,
-  headers: {
-    "admin-token": config.accessToken
-  }
-});
+var { commonRequest, adminRequest } = require('../helpers/requests');
 
 router.post('/login', async (req, res, next) => {
   const { username, password } = req.body;
   try {
-    const response = await request.get(`/api/adminUser/username/${username}`)
+    const response = await adminRequest.get(`/api/adminUser/username/${username}`)
     const { data } = response;
     const user = data.data;
     if (data.success && user && user.password == password) {
@@ -36,13 +28,6 @@ router.post('/login', async (req, res, next) => {
     next(e)
   }
 })
-
-var commonRequest = axios.create({
-  baseURL: config.apiServer,
-  headers: {
-    "access-token": config.accessToken
-  }
-});
 
 router.use('*', async (req, res, next) => {
   const path = req.params[0];
