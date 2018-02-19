@@ -37,4 +37,34 @@ router.post('/login', async (req, res, next) => {
   }
 })
 
+var commonRequest = axios.create({
+  baseURL: config.apiServer,
+  headers: {
+    "access-token": config.accessToken
+  }
+});
+
+router.get('*', async (req, res, next) => {
+  const path = req.params[0];
+  try {
+    const response = await commonRequest({
+      url: path,
+      method: req.method,
+      params: req.query,
+      data: req.body
+    })
+    const { data } = response;
+    res.json(data);
+  } catch (e) {
+    if (e.response) {
+      res.json(e.response.data);
+    } else {
+      console.log(e)
+      res.json({
+        success: false
+      })
+    }
+  }
+})
+
 module.exports = router;
