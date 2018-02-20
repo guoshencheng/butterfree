@@ -22,4 +22,14 @@
     </table>
   </div>
 </div>
+<script type="text/x-dot-template" id="TipEditor" >
+<div class="content">
+  <form id="tipform" data-id="\{{=it.id}}">
+    <div class="form-group">
+       <label class="control-label">内容片段:</label>
+       <textarea class="form-control" name="tipText" cols="30" rows="8" >\{{=it.tipText}}</textarea>
+     </div>
+  </form>
+</div>
+</script>
 <script src="/js/tips.js?t={{timestamp}}" charset="utf-8"></script>

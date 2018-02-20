@@ -1,4 +1,5 @@
 $(function() {
+  var template =  doT.template($("#TipEditor").html());
   var table = $('#tips-table').DataTable({
     searching: false,
     ordering: false,
@@ -16,26 +17,36 @@ $(function() {
     columns: [{
       data: 'id'
     }, {
-      data: 'tipText'
+      data: null,
+      render: function(data) {
+        return '<span class="tipTextContainer">' + data.tipText +'</span>'
+      }
     }, {
       data: null,
       render: function(data) {
         return '<span class="operation-container" data-id="' + data.id + '">' +
-        '<a class="fa fa-edit" href="/posts/' + data.id + '" ></a>' +
+        '<a class="fa fa-edit" href="javascript:void(0)" data-id="' + data.id + '"></a>' +
         '</span>'
       }
     }]
   });
-  $('.create-tip').on('click', function() {
-    $.ajax({
-      method: 'post',
-      url: '/api/v1/posts/empty'
-    }).then(function(res) {
-      if (res.success) {
-        window.location.href = '/posts/' + res.data.id
-      } else {
-        layer.alert(res.message)
+  $('body').on('click', '.fa-edit', function() {
+    var id = $(this).data('id');
+    var tipText;
+    if (id) {
+      tipText = $(this).closest('tr').find('.tipTextContainer').text();
+    }
+    var params = { id: id, tipText: tipText }
+    var index = layer.open({
+      type: 1,
+      title: '编辑tip',
+      btn: ['确定', '取消'],
+      zIndex: 99,
+      area: ['400px', '350px'],
+      content: template(params),
+      yes: function() {
+        
       }
     })
-  })
+  });
 })
