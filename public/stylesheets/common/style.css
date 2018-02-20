@@ -10,3 +10,13 @@ a {
 .fa {
   margin: 3px;
 }
+
+.content-wrapper {
+  position: relative;
+}
+
+.main-content {
+  position: absolute;
+  height: 100%;
+  overflow: auto;
+}
