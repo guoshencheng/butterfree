@@ -5,7 +5,7 @@ var api = require('./api');
 var { checkPageAccess, checkApiAccess } = require('../middlewares/auth');
 var { commonRequest } = require('../helpers/requests');
 
-router.use('/api', api);
+router.use('/api', checkApiAccess, api);
 
 router.get('/', checkPageAccess, (req, res, next) => {
   res.redirect(pages.posts.path);
