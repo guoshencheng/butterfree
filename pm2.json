@@ -10,8 +10,8 @@
       "PORT": "3102"
     },
     "node_args": ["--inspect=0.0.0.0:9002"],
-    "out_file": "./logs/app.log",
-    "error_file": "./logs/app.log",
+    "out_file": "./logs/production/app.log",
+    "error_file": "./logs/production/app.log",
     "merge_logs": true,
     "log_date_format": "YYYY-MM-DD HH:mm Z"
   },
@@ -26,8 +26,8 @@
       "PORT": "3103"
     },
     "node_args": ["--inspect=0.0.0.0:9003"],
-    "out_file": "./logs/app.log",
-    "error_file": "./logs/app.log",
+    "out_file": "./logs/test/app.log",
+    "error_file": "./logs/test/app.log",
     "merge_logs": true,
     "log_date_format": "YYYY-MM-DD HH:mm Z"
   }
