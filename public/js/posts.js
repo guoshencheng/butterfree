@@ -18,6 +18,12 @@ $(function() {
     }, {
       data: 'title'
     }, {
+      data: null,
+      render: function(data) {
+        const categoryName = data.postCategory ? data.postCategory.name : '还未设置';
+        return '<span>' + categoryName + '</span>'
+      }
+    }, {
       data: 'short',
       width: '300'
     }, {
